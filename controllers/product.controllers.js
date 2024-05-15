@@ -28,12 +28,14 @@ export const getsingleproduct = async (req, resp)=>{
 export const createproducts = async(req, resp)=>{
 	try {
 		const {title , description , price , stock} = req.body
+		console.log("titel" , title , "description" ,description  );
 		
 		const productImageLocalFilePath = req.files?.image[0]?.path;
 	  
-	  
+	  console.log(productImageLocalFilePath);
 		const productimage = await uploadonclodinary(productImageLocalFilePath) ;
-		
+		console.log(productimage);
+
 		const createdProduct = await new Product({
 			title,
 			description,
@@ -48,7 +50,7 @@ export const createproducts = async(req, resp)=>{
     
 
 	} catch (error) {
-		
+		console.log(error);
 		resp.status(400).json({message : "plz fill all the details"});
 	}
 }
